@@ -1,0 +1,134 @@
+\documentclass[12pt,oneside]{book}
+
+% --- Idioma y codificación ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% --- Formato de página ---
+\usepackage[a5paper,margin=2cm]{geometry} % a5paper = tamaño típico de novela impresa; cambiá a "letterpaper" si vas a leer en pantalla
+\usepackage{setspace}
+\onehalfspacing
+
+% --- Imágenes (portada) ---
+\usepackage{graphicx}
+\usepackage{eso-pic}
+
+% --- Franja de peligro (página de advertencia) ---
+\usepackage{tikz}
+\newcommand{\hazardstripe}{%
+\begin{tikzpicture}
+  \pgfmathsetmacro{\wcm}{\linewidth/1cm}
+  \clip (0,0) rectangle (\wcm,0.35);
+  \fill[white] (0,0) rectangle (\wcm,0.35);
+  \foreach \i in {0,...,30}{
+    \pgfmathsetmacro{\x}{\i*0.6-1}
+    \fill[black] (\x,-0.2) -- (\x+0.35,-0.2) -- (\x+0.7,0.55) -- (\x+0.35,0.55) -- cycle;
+  }
+\end{tikzpicture}%
+}
+
+% --- Tipografía de capítulos ---
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\centering\normalfont\bfseries}
+  {\fontsize{45}{50}\selectfont\chaptertitlename\ \fontsize{55}{60}\selectfont\thechapter}
+  {10pt}
+  {\centering\fontsize{22}{26}\selectfont\bfseries}
+\titlespacing*{\chapter}{0pt}{0pt}{40pt}
+
+% --- Letra capital gótica al inicio del capítulo ---
+\usepackage{lettrine}
+\usepackage{yfonts}
+\DeclareFontShape{LYG}{ygoth}{m}{n}{<-> ygoth}{} % permite escalar la fuente gótica a cualquier tamaño
+\renewcommand{\LettrineFontHook}{\gothfamily}
+\setcounter{DefaultLines}{3}
+\setlength{\DefaultFindent}{0pt}
+\setlength{\DefaultNindent}{0pt}
+
+% --- Sangría de párrafo (estilo novela) ---
+\usepackage{indentfirst}
+
+% --- Tarjeta "Now Playing" (música recomendada) ---
+\usepackage{fontawesome5}
+\usepackage[most]{tcolorbox}
+\newcommand{\nowplaying}[2]{%
+  \begin{center}
+  \tcbox[on line,colback=black!5,colframe=black,boxrule=0.5pt,arc=8pt,
+    boxsep=1pt,left=4mm,right=4mm,top=1.5mm,bottom=1.5mm]{%
+    \sffamily\footnotesize\faMusic\ \textbf{NOW PLAYING}}\\[6pt]
+  {\sffamily\bfseries\large #1}\\[1pt]
+  {\sffamily\color{black!55}\small #2}
+  \end{center}
+}
+
+% --- Encabezados/pies de página ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+
+\title{Título de tu novela}
+\author{Miguel}
+\date{2026}
+
+\begin{document}
+
+\frontmatter
+
+% --- Portada ---
+\AddToShipoutPictureBG*{%
+    \put(0,0){\includegraphics[width=\paperwidth,height=\paperheight]{images/portada1.jpeg}}%
+}
+\thispagestyle{empty}
+\null
+\clearpage
+
+% --- Advertencia ---
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+\hazardstripe
+
+\vspace{7mm}
+{\fontsize{55}{55}\selectfont\faExclamationTriangle}
+
+\vspace{5mm}
+{\sffamily\bfseries\fontsize{34}{38}\selectfont ADVERTENCIA}
+
+\vspace{9mm}
+\begin{minipage}{0.85\linewidth}
+\centering\sffamily\bfseries\large
+DECLARO QUE ESTE LIBRO ES PARA MAYORES DE 18 AÑOS Y TODO AQUEL MENOR DE EDAD QUE ESTÉ DISPUESTO A CUESTIONAR SU IDENTIDAD.
+\end{minipage}
+
+\vspace{9mm}
+\hazardstripe
+\end{center}
+\vspace*{\fill}
+\clearpage
+
+\tableofcontents
+
+\mainmatter
+
+\input{Chapters/intro}
+
+\backmatter
+
+% --- Créditos musicales ---
+\chapter*{Créditos musicales}
+\addcontentsline{toc}{chapter}{Créditos musicales}
+
+\emph{Las canciones mencionadas a lo largo de este libro son sugerencias de acompañamiento para la lectura. Todos los derechos de autor pertenecen a sus respectivos artistas, compositores y sellos discográficos. Este libro no reclama ninguna propiedad sobre dichas obras; se mencionan únicamente con fines de recomendación.}
+
+\bigskip
+
+% Agregar una entrada por cada capítulo que use \nowplaying
+\noindent\textbf{Chapter 1 --- Star: El final del inicio}\\
+1303 Passacaglia --- SynthWulf
+
+\end{document}
