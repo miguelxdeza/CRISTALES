@@ -63,6 +63,14 @@
   \end{center}
 }
 
+% --- Ilustración con descripción ---
+\newcommand{\illustration}[2]{%
+  \begin{center}
+  \includegraphics[width=0.55\textwidth]{#1}\\[4pt]
+  {\sffamily\small\itshape\color{black!60} #2}
+  \end{center}
+}
+
 % --- Encabezados/pies de página ---
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -116,6 +124,7 @@ DECLARO QUE ESTE LIBRO ES PARA MAYORES DE 18 AÑOS Y TODO AQUEL MENOR DE EDAD QU
 \mainmatter
 
 \input{Chapters/intro}
+\input{Chapters/chapter2}
 
 \backmatter
 
@@ -130,5 +139,10 @@ DECLARO QUE ESTE LIBRO ES PARA MAYORES DE 18 AÑOS Y TODO AQUEL MENOR DE EDAD QU
 % Agregar una entrada por cada capítulo que use \nowplaying
 \noindent\textbf{Chapter 1 --- Star: El final del inicio}\\
 1303 Passacaglia --- SynthWulf
+
+\bigskip
+
+\noindent\textbf{Chapter 2 --- Star: Are you okey?}\\
+KILLSWITCH (Levia Remix) --- mekaloton \& Levia
 
 \end{document}
