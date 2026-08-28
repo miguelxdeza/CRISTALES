@@ -29,3 +29,5 @@
 
 # --- Privado, nunca publicar ---
 SECRETS/
+CLAUDE.md
+/Characters/
